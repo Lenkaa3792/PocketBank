@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         // The AppBar is the top bar that typically holds the title and actions.
         title: Text(
-          'Login', 
+          'Login to PocketWallet', 
           style: TextStyle(color: Colors.white), // Setting the AppBar title text to white.
         ),
         backgroundColor: Colors.teal, // Setting the AppBar background to teal.

@@ -12,7 +12,7 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(
         // AppBar is the top bar for the screen, usually containing a title or actions.
         title: Text(
-          'Register', 
+          'Register to PocketWallet', 
           style: TextStyle(color: Colors.white), // Sets the AppBar title text color to white.
         ),
         backgroundColor: Colors.teal, // Teal color for the AppBar background.

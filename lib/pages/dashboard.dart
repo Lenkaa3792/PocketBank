@@ -1,66 +1,132 @@
-// Importing the Flutter Material package to use the material design components.
 import 'package:flutter/material.dart';
 
-// Defining the DashboardPage class, which extends StatelessWidget.
-// This page displays a grid of options (e.g., Send Money, Pay Bills).
-class DashboardPage extends StatelessWidget {
-  // The build method returns the UI structure of the page.
+// Main entry point of the PocketBankingApp
+void main() {
+  runApp(PocketBankingApp());
+}
+
+// PocketBankingApp class defines the structure and behavior of the app
+class PocketBankingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // Scaffold provides the overall structure of the screen.
-      appBar: AppBar(
-        // AppBar at the top with a title 'Dashboard'.
-        title: Text('Dashboard'),
-        backgroundColor: Colors.teal, // Setting AppBar background color to teal.
+    return MaterialApp(
+      title: 'Pocket Banking', // App title
+      theme: ThemeData(
+        primaryColor: Colors.teal, // Teal as primary color for the app theme
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.teal, // Color scheme uses teal as base color
+        ).copyWith(
+          secondary: Colors.tealAccent, // Accent color set to teal accent
+        ),
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.teal),
+          bodyMedium: TextStyle(fontSize: 16, color: Colors.black), // Body text style
+        ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.teal, // Teal color for buttons
+          textTheme: ButtonTextTheme.primary,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.teal, // Elevated button color
+          ),
+        ),
       ),
+      home: DashboardPage(), // Set the home screen to the DashboardPage
+    );
+  }
+}
 
-      // The body contains a GridView that shows dashboard items in a grid layout.
-      body: GridView.count(
-        crossAxisCount: 2, // Display two items per row.
-        padding: EdgeInsets.all(16.0), // Add padding around the grid items.
-        
-        // The children property holds the dashboard items.
+// DashboardPage defines the main screen with the grid and bottom navigation bar
+class DashboardPage extends StatefulWidget {
+  @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int _selectedIndex = 0; // Keeps track of the selected tab in the bottom navigation
+
+  // List of pages to switch between (currently only the DashboardPage is used)
+  final List<Widget> _pages = <Widget>[
+    DashboardGrid(), // Grid view for dashboard items
+    Center(child: Text('Savings Page')),
+    Center(child: Text('Loan Page')),
+    Center(child: Text('Account Page')),
+  ];
+
+  // Handler for tapping a navigation item
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('PocketWallet'), // App bar title
+          backgroundColor: Colors.teal,
+        ),
+        body: _pages[_selectedIndex], // Display the selected page (grid or other pages)
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex, // Current selected index
+          onTap: _onItemTapped, // Tap handler
+          selectedItemColor: Colors.teal, // Selected item color (teal)
+          unselectedItemColor: Colors.grey, // Unselected item color (grey)
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.savings), label: 'Savings'),
+            BottomNavigationBarItem(icon: Icon(Icons.money), label: 'Loan'),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Account'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// DashboardGrid is the grid layout on the main screen
+class DashboardGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: GridView.count(
+        crossAxisCount: 3, // Three columns in the grid
+        shrinkWrap: true, // Shrinks the grid size to fit its content
+        physics: NeverScrollableScrollPhysics(), // Prevents independent scrolling
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0), // Padding around the grid
+        crossAxisSpacing: 12.0, // Horizontal space between grid items
+        mainAxisSpacing: 16.0, // Vertical space between grid items
         children: <Widget>[
-          // Build a dashboard item for 'Send Money' with an icon and label.
           _buildDashboardItem(context, Icons.send, 'Send Money', '/sendmoney'),
-          
-          // Build another dashboard item for 'Pay Bills' with an icon and label.
           _buildDashboardItem(context, Icons.payment, 'Pay Bills', '/paybills'),
-          
-          // You can add more items here as needed.
+          _buildDashboardItem(context, Icons.phone, 'Buy Airtime', '/buyairtime'),
+          _buildDashboardItem(context, Icons.attach_money, 'Withdraw', '/withdraw'),
+          _buildDashboardItem(context, Icons.sync_alt, 'Bank Transfer', '/banktransfer'),
+          _buildDashboardItem(context, Icons.account_balance_wallet, 'Deposit', '/deposit'),
         ],
       ),
     );
   }
 
-  // A helper function that builds individual dashboard items.
-  // Takes the context, icon, label, and route for navigation.
+  // Builds a single dashboard item (icon + text)
   Widget _buildDashboardItem(BuildContext context, IconData icon, String label, String route) {
-    // GestureDetector allows detecting taps on the card.
     return GestureDetector(
-      // When tapped, navigate to the specified route.
-      onTap: () => Navigator.pushNamed(context, route), // Navigates to a specific page based on the route.
-      
-      // The card visually represents the dashboard item with an icon and label.
+      onTap: () {
+        Navigator.pushNamed(context, route); // Navigate to the corresponding route
+      },
       child: Card(
-        elevation: 5, // Adds a shadow effect to the card to give it some depth.
-        margin: EdgeInsets.all(8.0), // Adds margin around each card.
-        
-        // The Column widget arranges the icon and text vertically.
+        color: Colors.white,
+        elevation: 2.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)), // Rounded card shape
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Center both the icon and label in the card.
-          
-          // Children widgets inside the column.
+          mainAxisAlignment: MainAxisAlignment.center, // Center the content vertically
           children: <Widget>[
-            // Icon widget to display an icon for the dashboard item.
-            Icon(icon, size: 50, color: Colors.teal), // The icon is displayed in teal color and sized at 50.
-            
-            // SizedBox adds vertical spacing between the icon and the label.
-            SizedBox(height: 10),
-            
-            // Text widget to display the label (e.g., 'Send Money', 'Pay Bills').
-            Text(label, style: Theme.of(context).textTheme.bodyMedium), // Displays the label with the app's text style.
+            Icon(icon, size: 36.0, color: Colors.teal), // Icon for the grid item
+            SizedBox(height: 8.0), // Space between icon and text
+            Text(label, style: TextStyle(fontSize: 12.0, color: Colors.teal)), // Label below the icon
           ],
         ),
       ),
