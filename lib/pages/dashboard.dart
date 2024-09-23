@@ -1,43 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Main entry point of the PocketBankingApp
-void main() {
-  runApp(PocketBankingApp());
-}
-
-// PocketBankingApp class defines the structure and behavior of the app
-class PocketBankingApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pocket Banking', // App title
-      theme: ThemeData(
-        primaryColor: Colors.teal, // Teal as primary color for the app theme
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.teal, // Color scheme uses teal as base color
-        ).copyWith(
-          secondary: Colors.tealAccent, // Accent color set to teal accent
-        ),
-        textTheme: TextTheme(
-          headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.teal),
-          bodyMedium: TextStyle(fontSize: 16, color: Colors.black), // Body text style
-        ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: Colors.teal, // Teal color for buttons
-          textTheme: ButtonTextTheme.primary,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal, // Elevated button color
-          ),
-        ),
-      ),
-      home: DashboardPage(), // Set the home screen to the DashboardPage
-    );
-  }
-}
-
-// DashboardPage defines the main screen with the grid and bottom navigation bar
+// Main dashboard for the app
 class DashboardPage extends StatefulWidget {
   @override
   _DashboardPageState createState() => _DashboardPageState();
@@ -46,7 +9,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0; // Keeps track of the selected tab in the bottom navigation
 
-  // List of pages to switch between (currently only the DashboardPage is used)
+  // List of pages to switch between
   final List<Widget> _pages = <Widget>[
     DashboardGrid(), // Grid view for dashboard items
     Center(child: Text('Savings Page')),
@@ -57,7 +20,7 @@ class _DashboardPageState extends State<DashboardPage> {
   // Handler for tapping a navigation item
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = index; // Update the selected index
     });
   }
 
@@ -69,12 +32,12 @@ class _DashboardPageState extends State<DashboardPage> {
           title: Text('PocketWallet'), // App bar title
           backgroundColor: Colors.teal,
         ),
-        body: _pages[_selectedIndex], // Display the selected page (grid or other pages)
+        body: _pages[_selectedIndex], // Display the selected page
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex, // Current selected index
           onTap: _onItemTapped, // Tap handler
-          selectedItemColor: Colors.teal, // Selected item color (teal)
-          unselectedItemColor: Colors.grey, // Unselected item color (grey)
+          selectedItemColor: Colors.teal, // Selected item color
+          unselectedItemColor: Colors.grey, // Unselected item color
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.savings), label: 'Savings'),
