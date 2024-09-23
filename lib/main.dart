@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
-import 'pages/login.dart'; // Import for LoginPage
-import 'pages/register.dart'; // Import for RegisterPage
-import 'pages/pay_bills.dart'; // Import for PayBillsPage
-import 'pages/send_money.dart'; // Import for SendMoneyPage
-import 'pages/dashboard.dart'; // Import for DashboardPage
-import 'pages/buy_airtime.dart'; // Import for BuyAirtimePage
-import 'pages/withdraw.dart'; // Import for WithdrawPage
-import 'pages/bank_transfer.dart'; // Import for BankTransferPage
-import 'pages/deposit.dart'; // Import for DepositPage
+import 'pages/login.dart';
+import 'pages/register.dart';
+import 'pages/pay_bills.dart';
+import 'pages/send_money.dart';
+import 'pages/dashboard.dart';
+import 'pages/buy_airtime.dart';
+import 'pages/withdraw.dart';
+import 'pages/bank_transfer.dart';
+import 'pages/deposit.dart';
+import 'pages/savings_page.dart'; // Import for SavingsPage
+import 'pages/loan_page.dart';     // Import for LoanPage
+import 'pages/account_page.dart';   // Import for AccountPage
 
 void main() {
-  runApp(PocketBankingApp()); // Start the app
+  runApp(PocketBankingApp());
 }
 
 class PocketBankingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pocket Banking', // Title of the application
+      title: 'Pocket Banking',
       theme: ThemeData(
-        primarySwatch: Colors.teal, // Set the primary color theme
+        primarySwatch: Colors.teal,
       ),
-      initialRoute: '/', // Define the initial route
+      initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(), // Route for LoginPage
-        '/dashboard': (context) => DashboardPage(), // Route for DashboardPage
-        '/register': (context) => RegisterPage(), // Route for RegisterPage
-        '/paybills': (context) => PayBillsPage(), // Route for PayBillsPage
-        '/sendmoney': (context) => SendMoneyPage(), // Route for SendMoneyPage
-        '/buyairtime': (context) => BuyAirtimePage(), // Route for BuyAirtimePage
-        '/withdraw': (context) => WithdrawPage(), // Route for WithdrawPage
-        '/banktransfer': (context) => BankTransferPage(), // Route for BankTransferPage
-        '/deposit': (context) => DepositPage(), // Route for DepositPage
+        '/': (context) => LoginPage(),
+        '/dashboard': (context) => DashboardPage(),
+        '/register': (context) => RegisterPage(),
+        '/paybills': (context) => PayBillsPage(),
+        '/sendmoney': (context) => SendMoneyPage(),
+        '/buyairtime': (context) => BuyAirtimePage(),
+        '/withdraw': (context) => WithdrawPage(),
+        '/banktransfer': (context) => BankTransferPage(),
+        '/deposit': (context) => DepositPage(),
+        '/savings': (context) => SavingsPage(), // Route for SavingsPage
+        '/loans': (context) => LoanPage(),       // Route for LoanPage
+        '/account': (context) => AccountPage(),   // Route for AccountPage
       },
     );
   }

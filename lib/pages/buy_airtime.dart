@@ -1,5 +1,8 @@
+//flutter libary for UI elements
 import 'package:flutter/material.dart';
 
+
+// class BuyAirtime {}
 class BuyAirtimePage extends StatelessWidget {
   // Controllers to manage the input fields
   final TextEditingController numberController = TextEditingController(); // Controller for the phone number input

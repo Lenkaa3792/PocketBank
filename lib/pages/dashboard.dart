@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'savings_page.dart'; // Import SavingsPage
+import 'loan_page.dart'; // Import LoanPage
+import 'account_page.dart'; // Import AccountPage
 
 // Main dashboard for the app
 class DashboardPage extends StatefulWidget {
@@ -12,9 +15,9 @@ class _DashboardPageState extends State<DashboardPage> {
   // List of pages to switch between when a tab is selected
   final List<Widget> _pages = <Widget>[
     DashboardGrid(), // Dashboard grid view for the home tab
-    Center(child: Text('Savings Page')), // Placeholder for the savings page
-    Center(child: Text('Loan Page')), // Placeholder for the loan page
-    Center(child: Text('Account Page')), // Placeholder for the account page
+    SavingsPage(), // Updated to the actual SavingsPage widget
+    LoanPage(), // Updated to the actual LoanPage widget
+    AccountPage(), // Updated to the actual AccountPage widget
   ];
 
   // Method to handle taps on the bottom navigation bar
