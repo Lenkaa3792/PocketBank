@@ -1,87 +1,113 @@
-import 'package:flutter/material.dart'; // Import Flutter Material package for UI components
+import 'package:flutter/material.dart';
 
-// Defining the PayBillsPage class
+// Defining the PayBillsPage class, which is a StatelessWidget
 class PayBillsPage extends StatelessWidget {
-  // Controller for the bill number input field
+  // Controller to handle input for the bill number
   final TextEditingController billNumberController = TextEditingController();
-  // Controller for the account number input field
+  // Controller to handle input for the account number
   final TextEditingController accountNumberController = TextEditingController();
+  // Controller to handle input for the amount
+  final TextEditingController amountController = TextEditingController();
 
-  // List of bill types available for selection
+  // List of available bill types for the dropdown menu
   final List<String> billTypes = ['DSTV', 'Water', 'Netflix', 'Showmax'];
 
   // Variable to store the currently selected bill type
-  String selectedBillType = 'DSTV'; // Default selection is DSTV
+  String selectedBillType = 'DSTV'; // Default selection
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Scaffold provides a structure for the page, including an AppBar and body
       appBar: AppBar(
         title: Text('Pay Bills'), // Title displayed in the AppBar
       ),
       body: Padding(
-        // Padding adds space around the content
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // Padding around the content
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, // Center the column vertically
           children: [
-            // Dropdown button for selecting the bill type
+            // Dropdown button for selecting the type of bill
             DropdownButton<String>(
-              value: selectedBillType, // Currently selected bill type
+              value: selectedBillType, // Current selected bill type
               onChanged: (String? newValue) {
-                // Update the selected bill type when a new option is selected
+                // Update selected bill type when a new value is chosen
                 selectedBillType = newValue!;
               },
               items: billTypes.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
-                  value: value,
+                  value: value, // The value for the dropdown item
                   child: Row(
                     children: [
-                      // Placeholder icon for the bill type (replace with actual icons)
-                      Icon(Icons.receipt, size: 24), // Icon representing the bill type
+                      // Placeholder icon for each bill type (replace with actual icons)
+                      Icon(Icons.receipt, size: 24), // Icon for the bill type
                       SizedBox(width: 8), // Space between icon and text
-                      Text(value), // Display the bill type name
+                      Text(value), // Display the bill type text
                     ],
                   ),
                 );
-              }).toList(),
+              }).toList(), // Convert the list of bill types to dropdown items
             ),
-            SizedBox(height: 16.0), // Add space between the dropdown and input fields
-            // Input field for the bill number
+            SizedBox(height: 16.0), // Space between the dropdown and input fields
+            
+            // Input field for entering the bill number
             TextField(
-              controller: billNumberController, // Connect the controller to the input field
+              controller: billNumberController, // Connects the controller to the input field
               decoration: InputDecoration(
                 labelText: 'Bill Number', // Label shown in the input field
-                border: OutlineInputBorder(), // Outline border style for the input field
+                border: OutlineInputBorder(), // Outline border for the input field
               ),
             ),
-            SizedBox(height: 16.0), // Add space between the fields
-            // Input field for the account number
+            SizedBox(height: 16.0), // Space between input fields
+            
+            // Input field for entering the account number
             TextField(
-              controller: accountNumberController, // Connect the controller to the input field
+              controller: accountNumberController, // Connects the controller to the input field
               decoration: InputDecoration(
                 labelText: 'Account Number', // Label shown in the input field
-                border: OutlineInputBorder(), // Outline border style for the input field
+                border: OutlineInputBorder(), // Outline border for the input field
               ),
             ),
-            SizedBox(height: 20.0), // Add space between the fields and button
-            // Button to initiate the payment process
+            SizedBox(height: 16.0), // Space between input fields
+            
+            // Input field for entering the amount to pay
+            TextField(
+              controller: amountController, // Connects the controller to the input field
+              keyboardType: TextInputType.number, // Show numeric keyboard for input
+              decoration: InputDecoration(
+                labelText: 'Amount', // Label shown in the input field
+                border: OutlineInputBorder(), // Outline border for the input field
+              ),
+            ),
+            SizedBox(height: 20.0), // Space between input fields and button
+            
+            // Button to trigger the payment action
             ElevatedButton(
               onPressed: () {
-                // Action to perform when the button is pressed
-                String billNumber = billNumberController.text; // Get the bill number from the input field
-                String accountNumber = accountNumberController.text; // Get the account number from the input field
+                // Logic to handle payment would go here
+                final billNumber = billNumberController.text;
+                final accountNumber = accountNumberController.text;
+                final amount = amountController.text;
 
-                // Print details to the console (for debugging purposes)
-                print('Paying $selectedBillType with bill number $billNumber from account $accountNumber');
-                // Here you would add your logic to process the payment, e.g., API call
+                // Show a message with the payment details (for demonstration)
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Payment Confirmation'),
+                      content: Text('Paying $amount for $selectedBillType\nBill Number: $billNumber\nAccount Number: $accountNumber'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Close the dialog
+                          },
+                          child: Text('OK'), // Button text
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
-              child: Text('Pay Bill'), // Text displayed on the button
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal, // Background color of the button
-                padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
-              ),
+              child: Text('Send Payment'), // Button label
             ),
           ],
         ),
