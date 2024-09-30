@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
 // Defining the RegisterPage class
 class RegisterPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // Key to manage the form validation
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance; // Firebase Auth instance
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +70,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password'; // Error if the field is empty
                   }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters long'; // Error if the password is too short
+                  }
                   return null; // No error if the field is valid
                 },
               ),
@@ -75,11 +80,30 @@ class _RegisterPageState extends State<RegisterPage> {
 
               // Register button
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // Validate the form before proceeding
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, navigate back to the Login page
-                    Navigator.pop(context);
+                    try {
+                      // Create a new user with Firebase
+                      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                      // If successful, navigate to the Dashboard
+                      Navigator.pushReplacementNamed(context, '/dashboard');
+                    } on FirebaseAuthException catch (e) {
+                      // Handle error during registration
+                      String errorMessage;
+                      if (e.code == 'weak-password') {
+                        errorMessage = 'The password provided is too weak.';
+                      } else if (e.code == 'email-already-in-use') {
+                        errorMessage = 'The account already exists for that email.';
+                      } else {
+                        errorMessage = 'An error occurred. Please try again.';
+                      }
+                      // Show error message
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -87,6 +111,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   foregroundColor: Colors.white, // Button text color
                 ),
                 child: Text('Register'), // Button text
+              ),
+              SizedBox(height: 10), // Space before the login link
+
+              // Login link
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/'); // Navigate back to Login page
+                }, // Login link text
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.teal, // Text color
+                ),
+                child: Text('Already have an account? Login here'),
               ),
             ],
           ),

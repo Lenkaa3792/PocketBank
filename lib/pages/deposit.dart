@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // Defining the DepositPage class
 class DepositPage extends StatefulWidget {
+  const DepositPage({super.key});
+
   @override
   _DepositPageState createState() => _DepositPageState();
 }
@@ -18,7 +20,7 @@ class _DepositPageState extends State<DepositPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Deposit'), // Title displayed in the AppBar
+        title: const Text('Deposit'), // Title displayed in the AppBar
         backgroundColor: Colors.teal, // Background color of the AppBar
       ),
       body: Padding(
@@ -31,7 +33,7 @@ class _DepositPageState extends State<DepositPage> {
               // Input field for deposit amount
               TextFormField(
                 controller: amountController, // Connect the controller to the input field
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Deposit Amount', // Label displayed in the input field
                   border: OutlineInputBorder(), // Outline border style for the input field
                 ),
@@ -43,16 +45,16 @@ class _DepositPageState extends State<DepositPage> {
                   return null; // No error if field is valid
                 },
               ),
-              SizedBox(height: 16.0), // Add space between the fields
+              const SizedBox(height: 16.0), // Add space between the fields
               
               // Deposit method selection
               DropdownButtonFormField<String>(
                 value: depositMethod,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Deposit Method', // Label displayed in the dropdown
                   border: OutlineInputBorder(), // Outline border style for the dropdown
                 ),
-                items: [
+                items: const [
                   DropdownMenuItem<String>(
                     value: 'Bank Account',
                     child: Text('Bank Account'), // Option for deposit method
@@ -76,7 +78,7 @@ class _DepositPageState extends State<DepositPage> {
                 },
               ),
               
-              SizedBox(height: 20.0), // Add space between the fields and button
+              const SizedBox(height: 20.0), // Add space between the fields and button
               
               // Deposit button
               ElevatedButton(
@@ -89,12 +91,12 @@ class _DepositPageState extends State<DepositPage> {
                     print('Depositing $amount via $depositMethod'); // Debug output to console
                     // Optionally show a confirmation message or navigate to another page
                   }
-                },
-                child: Text('Deposit'), // Text displayed on the button
+                }, // Text displayed on the button
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal, // Background color of the button
-                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
                 ),
+                child: Text('Deposit'),
               ),
             ],
           ),

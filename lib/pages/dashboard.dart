@@ -5,6 +5,8 @@ import 'account_page.dart'; // Import AccountPage
 
 // Main dashboard for the app
 class DashboardPage extends StatefulWidget {
+  const DashboardPage({super.key});
+
   @override
   _DashboardPageState createState() => _DashboardPageState(); // Create state for the DashboardPage
 }
@@ -32,7 +34,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return SafeArea( // Ensures content is rendered within safe areas like notches or status bars
       child: Scaffold( // Main visual structure of the app
         appBar: AppBar( // Top bar with title and optional actions
-          title: Text('PocketWallet'), // App bar title
+          title: const Text('PocketWallet'), // App bar title
           backgroundColor: Colors.teal, // Background color for the app bar
         ),
         body: _pages[_selectedIndex], // Display the current page based on the selected index
@@ -41,7 +43,7 @@ class _DashboardPageState extends State<DashboardPage> {
           onTap: _onItemTapped, // Set the tap handler to update the index
           selectedItemColor: Colors.teal, // Color of the selected item
           unselectedItemColor: Colors.grey, // Color of unselected items
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'), // Home tab
             BottomNavigationBarItem(icon: Icon(Icons.savings), label: 'Savings'), // Savings tab
             BottomNavigationBarItem(icon: Icon(Icons.money), label: 'Loan'), // Loan tab
@@ -55,14 +57,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
 // DashboardGrid is the grid layout displayed on the home page of the dashboard
 class DashboardGrid extends StatelessWidget {
+  const DashboardGrid({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView( // Allows scrolling if content exceeds screen height
       child: GridView.count( // Create a grid view with a fixed number of columns
         crossAxisCount: 3, // Three columns in the grid
         shrinkWrap: true, // Shrinks the grid to fit its content
-        physics: NeverScrollableScrollPhysics(), // Disable scrolling for this grid (handled by parent)
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0), // Padding around the grid
+        physics: const NeverScrollableScrollPhysics(), // Disable scrolling for this grid (handled by parent)
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0), // Padding around the grid
         crossAxisSpacing: 12.0, // Horizontal space between grid items
         mainAxisSpacing: 16.0, // Vertical space between grid items
         children: <Widget>[
@@ -91,8 +95,8 @@ class DashboardGrid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center, // Center content vertically in the card
           children: <Widget>[
             Icon(icon, size: 36.0, color: Colors.teal), // Icon displayed for the grid item
-            SizedBox(height: 8.0), // Spacing between the icon and the text
-            Text(label, style: TextStyle(fontSize: 12.0, color: Colors.teal)), // Label text under the icon
+            const SizedBox(height: 8.0), // Spacing between the icon and the text
+            Text(label, style: const TextStyle(fontSize: 12.0, color: Colors.teal)), // Label text under the icon
           ],
         ),
       ),

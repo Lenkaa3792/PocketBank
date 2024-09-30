@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // Defining the SendMoneyPage class
 class SendMoneyPage extends StatefulWidget {
+  const SendMoneyPage({super.key});
+
   @override
   _SendMoneyPageState createState() => _SendMoneyPageState();
 }
@@ -18,7 +20,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Send Money'), // Title displayed in the AppBar
+        title: const Text('Send Money'), // Title displayed in the AppBar
         backgroundColor: Colors.teal, // Background color of the AppBar
       ),
       body: Padding(
@@ -31,7 +33,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
               // Input field for recipient's number
               TextFormField(
                 controller: recipientController, // Connect the controller to the input field
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Recipient\'s Number', // Label displayed in the input field
                   border: OutlineInputBorder(), // Outline border style for the input field
                 ),
@@ -46,12 +48,12 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 16.0), // Add space between the fields
+              const SizedBox(height: 16.0), // Add space between the fields
 
               // Input field for amount
               TextFormField(
                 controller: amountController, // Connect the controller to the input field
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Amount', // Label displayed in the input field
                   border: OutlineInputBorder(), // Outline border style for the input field
                 ),
@@ -66,7 +68,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 20.0), // Add space between the fields and button
+              const SizedBox(height: 20.0), // Add space between the fields and button
 
               // Send Money button
               ElevatedButton(
@@ -84,12 +86,12 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       content: Text('Sending $amount to $recipient'),
                     ));
                   }
-                },
-                child: Text('Send Money'), // Text displayed on the button
+                }, // Text displayed on the button
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal, // Background color of the button
-                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
                 ),
+                child: Text('Send Money'),
               ),
             ],
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BuyAirtimePage extends StatefulWidget {
+  const BuyAirtimePage({super.key});
+
   @override
   _BuyAirtimePageState createState() => _BuyAirtimePageState();
 }
@@ -17,7 +19,7 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Buy Airtime'), // Title displayed in the AppBar
+        title: const Text('Buy Airtime'), // Title displayed in the AppBar
         backgroundColor: Colors.teal, // Background color of the AppBar
       ),
       body: Padding(
@@ -30,7 +32,7 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
               // Input field for phone number
               TextFormField(
                 controller: numberController, // Connect the controller to manage the phone number input
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number', // Label for the phone number input field
                   border: OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -42,12 +44,12 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 16.0), // Space between the input fields
+              const SizedBox(height: 16.0), // Space between the input fields
               
               // Input field for airtime amount
               TextFormField(
                 controller: amountController, // Connect the controller to manage the airtime amount input
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Amount', // Label for the airtime amount input field
                   border: OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -59,7 +61,7 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 20.0), // Space between the input fields and the button
+              const SizedBox(height: 20.0), // Space between the input fields and the button
               
               // Buy Airtime button
               ElevatedButton(
@@ -74,12 +76,12 @@ class _BuyAirtimePageState extends State<BuyAirtimePage> {
                     print('Buying $amount of airtime for $number'); // Debug output to the console
                     // Optionally, you can show a confirmation message or navigate to another page after the operation
                   }
-                },
-                child: Text('Buy Airtime'), // Text displayed on the button
+                }, // Text displayed on the button
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal, // Background color of the button
-                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding inside the button
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding inside the button
                 ),
+                child: Text('Buy Airtime'),
               ),
             ],
           ),

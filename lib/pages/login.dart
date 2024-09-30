@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
 // Defining the LoginPage class
 class LoginPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // Key to manage the form validation
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance; // Firebase Auth instance
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +77,30 @@ class _LoginPageState extends State<LoginPage> {
 
               // Login button
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // Validate the form before proceeding
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, navigate to the Dashboard
-                    Navigator.pushReplacementNamed(context, '/dashboard');
+                    try {
+                      // Sign in the user with Firebase
+                      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                      // If successful, navigate to the Dashboard
+                      Navigator.pushReplacementNamed(context, '/dashboard');
+                    } on FirebaseAuthException catch (e) {
+                      // Handle error during sign-in
+                      String errorMessage;
+                      if (e.code == 'user-not-found') {
+                        errorMessage = 'No user found for that email.';
+                      } else if (e.code == 'wrong-password') {
+                        errorMessage = 'Wrong password provided for that user.';
+                      } else {
+                        errorMessage = 'An error occurred. Please try again.';
+                      }
+                      // Show error message
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+                    }
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -94,11 +115,11 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register'); // Navigate to Register page
-                },
-                child: Text('Don\'t have an account? Register here'), // Register link text
+                }, // Register link text
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.teal, // Text color
                 ),
+                child: Text('Don\'t have an account? Register here'),
               ),
             ],
           ),
