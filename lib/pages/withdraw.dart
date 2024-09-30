@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 // Defining the WithdrawPage class
-class WithdrawPage extends StatelessWidget {
+class WithdrawPage extends StatefulWidget {
+  @override
+  _WithdrawPageState createState() => _WithdrawPageState();
+}
+
+class _WithdrawPageState extends State<WithdrawPage> {
   // Controllers to manage the input fields
   final TextEditingController amountController = TextEditingController(); // Controller for withdrawal amount input
   final TextEditingController pinController = TextEditingController(); // Controller for PIN input
@@ -28,7 +33,9 @@ class WithdrawPage extends StatelessWidget {
               hint: Text('Select Withdrawal Method'), // Placeholder text
               value: selectedMethod, // Current selected method
               onChanged: (String? newValue) {
-                selectedMethod = newValue; // Update the selected method
+                setState(() {
+                  selectedMethod = newValue; // Update the selected method
+                });
               },
               items: withdrawalMethods.map<DropdownMenuItem<String>>((String method) {
                 return DropdownMenuItem<String>(
@@ -91,6 +98,9 @@ class WithdrawPage extends StatelessWidget {
                 }
 
                 // Optionally, you can show a confirmation message or navigate to another page after the operation
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Withdrawal of $amount initiated via $selectedMethod.'),
+                ));
               },
               child: Text('Withdraw'), // Text displayed on the button
               style: ElevatedButton.styleFrom(
