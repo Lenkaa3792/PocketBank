@@ -115,11 +115,11 @@ class _LoginPageState extends State<LoginPage> {
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register'); // Navigate to Register page
-                },
-                child: Text('Don\'t have an account? Register here'), // Register link text
+                }, // Register link text
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.teal, // Text color
                 ),
+                child: Text('Don\'t have an account? Register here'),
               ),
             ],
           ),

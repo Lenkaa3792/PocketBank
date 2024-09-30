@@ -118,11 +118,11 @@ class _RegisterPageState extends State<RegisterPage> {
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/'); // Navigate back to Login page
-                },
-                child: Text('Already have an account? Login here'), // Login link text
+                }, // Login link text
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.teal, // Text color
                 ),
+                child: Text('Already have an account? Login here'),
               ),
             ],
           ),
