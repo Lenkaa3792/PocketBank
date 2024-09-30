@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "223451987440",
+    "project_id": "fir-2e2f5",
+    "storage_bucket": "fir-2e2f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223451987440:android:4ceb8f8f891e7a7e40f135",
+        "android_client_info": {
+          "package_name": "com.demo.pocketank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaTA6OYt26BrwJl-b2wn-0yCgTpd6G4kE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

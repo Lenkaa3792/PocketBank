@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+
 class LoanPage extends StatelessWidget {
   final TextEditingController _amountController = TextEditingController();
+
+  LoanPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Loan Overview'),
+        title: const Text('Loan Overview'),
         backgroundColor: Colors.teal,
       ),
       body: Padding(
@@ -15,57 +18,57 @@ class LoanPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               'Current Loan Balance: \$5,000',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Total Loan Amount: \$10,000',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Interest Rate: 5%',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Payment Schedule: Monthly',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Apply for a Loan',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             TextField(
               controller: _amountController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Enter Loan Amount',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Handle loan application logic
                 final amount = _amountController.text;
                 _showLoanConfirmation(context, amount); // Show confirmation dialog
-              },
-              child: Text('Apply for Loan'), // Button text
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal), // Button color
+              }, // Button text
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              child: Text('Apply for Loan'), // Button color
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Loan History',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             // Dummy data for loan history
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   ListTile(
                     title: Text('Loan Application - \$2,000'),
                     subtitle: Text('Status: Approved'),
@@ -88,11 +91,11 @@ class LoanPage extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Loan Application'),
-          content: Text('You have applied for a loan of \$${amount}.'),
+          title: const Text('Loan Application'),
+          content: Text('You have applied for a loan of \$$amount.'),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },

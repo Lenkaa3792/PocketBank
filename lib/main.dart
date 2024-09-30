@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
+import 'package:pocket_banking/services/firebase_service.dart';
+
 import 'pages/login.dart';
 import 'pages/register.dart';
 import 'pages/pay_bills.dart';
@@ -9,14 +12,31 @@ import 'pages/withdraw.dart';
 import 'pages/bank_transfer.dart';
 import 'pages/deposit.dart';
 import 'pages/savings_page.dart'; // Import for SavingsPage
-import 'pages/loan_page.dart';     // Import for LoanPage
-import 'pages/account_page.dart';   // Import for AccountPage
+import 'pages/loan_page.dart'; // Import for LoanPage
+import 'pages/account_page.dart'; // Import for AccountPage
+import 'package:get_it/get_it.dart';
 
-void main() {
-  runApp(PocketBankingApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure binding is initialized
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+    apiKey: "AIzaSyDaTA6OYt26BrwJl-b2wn-0yCgTpd6G4kE",
+    authDomain: "your-auth-domain",
+    projectId: "fir-2e2f5",
+    storageBucket: "fir-2e2f5.appspot.com",
+    messagingSenderId: "223451987440",
+    appId: "1:223451987440:web:your-web-app-id",
+  )); // Initialize Firebase
+
+  GetIt.instance.registerSingleton<FirebaseService>(
+    FirebaseService(),
+  );
+  runApp(PocketBankingApp()); // Run the app
 }
 
 class PocketBankingApp extends StatelessWidget {
+  const PocketBankingApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,8 +56,8 @@ class PocketBankingApp extends StatelessWidget {
         '/banktransfer': (context) => BankTransferPage(),
         '/deposit': (context) => DepositPage(),
         '/savings': (context) => SavingsPage(), // Route for SavingsPage
-        '/loans': (context) => LoanPage(),       // Route for LoanPage
-        '/account': (context) => AccountPage(),   // Route for AccountPage
+        '/loans': (context) => LoanPage(), // Route for LoanPage
+        '/account': (context) => AccountPage(), // Route for AccountPage
       },
     );
   }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SavingsPage extends StatelessWidget {
+  const SavingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Savings'),
+        title: const Text('Savings'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

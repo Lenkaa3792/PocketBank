@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BankTransferPage extends StatefulWidget {
+  const BankTransferPage({super.key});
+
   @override
   _BankTransferPageState createState() => _BankTransferPageState();
 }
@@ -18,7 +20,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bank Transfer'), // Title displayed in the AppBar
+        title: const Text('Bank Transfer'), // Title displayed in the AppBar
         backgroundColor: Colors.teal, // Background color of the AppBar
       ),
       body: Padding(
@@ -31,7 +33,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
               // Input field for recipient's name
               TextFormField(
                 controller: recipientNameController, // Connects the controller to manage the recipient's name input
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Recipient\'s Name', // Label for the recipient's name input field
                   border: OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -42,12 +44,12 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 16.0), // Space between the input fields
+              const SizedBox(height: 16.0), // Space between the input fields
 
               // Input field for recipient's account number
               TextFormField(
                 controller: accountNumberController, // Connects the controller to manage the account number input
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Recipient\'s Account Number', // Label for the account number input field
                   border: OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -59,12 +61,12 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 16.0), // Space between the input fields
+              const SizedBox(height: 16.0), // Space between the input fields
 
               // Input field for transfer amount
               TextFormField(
                 controller: amountController, // Connects the controller to manage the transfer amount input
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Amount', // Label for the amount input field
                   border: OutlineInputBorder(), // Outline border around the input field
                 ),
@@ -76,7 +78,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 20.0), // Space between the input fields and button
+              const SizedBox(height: 20.0), // Space between the input fields and button
 
               // Transfer button
               ElevatedButton(
@@ -92,12 +94,12 @@ class _BankTransferPageState extends State<BankTransferPage> {
                     print('Transferring $amount to $recipientName (Account: $accountNumber)'); // Debug output to console
                     // Optionally, show a confirmation message or navigate to another page after the operation
                   }
-                },
-                child: Text('Transfer'), // Text displayed on the button
+                }, // Text displayed on the button
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal, // Background color of the button
-                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding inside the button
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding inside the button
                 ),
+                child: Text('Transfer'),
               ),
             ],
           ),
