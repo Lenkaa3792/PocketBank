@@ -76,8 +76,9 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                   // Validate the form before performing the send action
                   if (_formKey.currentState!.validate()) {
                     String recipient = recipientController.text; // Get the recipient's number from input
-                    String amount = amountController.text; // Get the amount from input
-
+                    String amount = amountController.text;
+                     // Get the amount from input
+                    
                     // Add your send money logic here (e.g., API call)
                     print('Sending $amount to $recipient'); // Debug output to console
 

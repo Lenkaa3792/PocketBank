@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
 import 'package:pocket_banking/services/firebase_service.dart';
-
 import 'pages/login.dart';
 import 'pages/register.dart';
 import 'pages/pay_bills.dart';
