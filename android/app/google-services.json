@@ -1,21 +1,40 @@
 {
   "project_info": {
-    "project_number": "223451987440",
-    "project_id": "fir-2e2f5",
-    "storage_bucket": "fir-2e2f5.appspot.com"
+    "project_number": "823239436996",
+    "project_id": "solop-f7607",
+    "storage_bucket": "solop-f7607.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:223451987440:android:4ceb8f8f891e7a7e40f135",
+        "mobilesdk_app_id": "1:823239436996:android:eac6b8a5ab81a18cddf791",
         "android_client_info": {
-          "package_name": "com.demo.pocketank"
+          "package_name": "com.demo.pocketbank"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDaTA6OYt26BrwJl-b2wn-0yCgTpd6G4kE"
+          "current_key": "AIzaSyC2iTTtLEhDSWEMBSIp5BDADHzffaZQZNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823239436996:android:2544061ee2158147ddf791",
+        "android_client_info": {
+          "package_name": "com.example.pocket_banking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2iTTtLEhDSWEMBSIp5BDADHzffaZQZNY"
         }
       ],
       "services": {
