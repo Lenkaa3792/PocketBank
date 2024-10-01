@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
-// Defining the PayBillsPage class, which is a StatelessWidget
+// Defining the PayBillsPage class, which is a StatefulWidget
 class PayBillsPage extends StatefulWidget {
+  const PayBillsPage({super.key});
 
-  const PayBillsPage({super.key}); 
   @override
   State<PayBillsPage> createState() => _PayBillsPageState();
 }
 
 class _PayBillsPageState extends State<PayBillsPage> {
-  // Controller to handle input for the bill number
+  // Controllers to handle input for the bill number, account number, and amount
   final TextEditingController billNumberController = TextEditingController();
-
-  // Controller to handle input for the account number
   final TextEditingController accountNumberController = TextEditingController();
-
-  // Controller to handle input for the amount
   final TextEditingController amountController = TextEditingController();
 
   // List of available bill types for the dropdown menu
@@ -24,7 +20,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
   // Variable to store the currently selected bill type
   String selectedBillType = 'DSTV';
 
- // Default selection
+  // Building the widget for PayBillsPage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,16 +36,37 @@ class _PayBillsPageState extends State<PayBillsPage> {
             DropdownButton<String>(
               value: selectedBillType, // Current selected bill type
               onChanged: (String? newValue) {
-                // Update selected bill type when a new value is chosen
-                selectedBillType = newValue!;
+                setState(() {
+                  // Update selected bill type when a new value is chosen
+                  if (newValue != null) {
+                    selectedBillType = newValue;
+
+                    // Switch case based on selected bill type
+                    switch (selectedBillType) {
+                      case 'DSTV':
+                        print('DSTV selected');
+                        break;
+                      case 'Water':
+                        print('Water selected');
+                        break;
+                      case 'Netflix':
+                        print('Netflix selected');
+                        break;
+                      case 'Showmax':
+                        print('Showmax selected');
+                        break;
+                      default:
+                        print('Unknown bill type selected');
+                    }
+                  }
+                });
               },
               items: billTypes.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value, // The value for the dropdown item
                   child: Row(
                     children: [
-                      // Placeholder icon for each bill type (replace with actual icons)
-                      const Icon(Icons.receipt, size: 24), // Icon for the bill type
+                      const Icon(Icons.receipt, size: 24), // Placeholder icon for each bill type
                       const SizedBox(width: 8), // Space between icon and text
                       Text(value), // Display the bill type text
                     ],
@@ -58,7 +75,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
               }).toList(), // Convert the list of bill types to dropdown items
             ),
             const SizedBox(height: 16.0), // Space between the dropdown and input fields
-            
+
             // Input field for entering the bill number
             TextField(
               controller: billNumberController, // Connects the controller to the input field
@@ -68,7 +85,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
               ),
             ),
             const SizedBox(height: 16.0), // Space between input fields
-            
+
             // Input field for entering the account number
             TextField(
               controller: accountNumberController, // Connects the controller to the input field
@@ -78,7 +95,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
               ),
             ),
             const SizedBox(height: 16.0), // Space between input fields
-            
+
             // Input field for entering the amount to pay
             TextField(
               controller: amountController, // Connects the controller to the input field
@@ -89,7 +106,7 @@ class _PayBillsPageState extends State<PayBillsPage> {
               ),
             ),
             const SizedBox(height: 20.0), // Space between input fields and button
-            
+
             // Button to trigger the payment action
             ElevatedButton(
               onPressed: () {
@@ -104,7 +121,11 @@ class _PayBillsPageState extends State<PayBillsPage> {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text('Payment Confirmation'),
-                      content: Text('Paying $amount for $selectedBillType\nBill Number: $billNumber\nAccount Number: $accountNumber'),
+                      content: Text(
+                        'Paying $amount for $selectedBillType\n'
+                        'Bill Number: $billNumber\n'
+                        'Account Number: $accountNumber',
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {

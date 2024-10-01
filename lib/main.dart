@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
 import 'package:pocket_banking/services/firebase_service.dart';
-
 import 'pages/login.dart';
 import 'pages/register.dart';
 import 'pages/pay_bills.dart';
@@ -20,12 +19,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure binding is initialized
   await Firebase.initializeApp(
       options: const FirebaseOptions(
-    apiKey: "AIzaSyDaTA6OYt26BrwJl-b2wn-0yCgTpd6G4kE",
+    apiKey: "AIzaSyC2iTTtLEhDSWEMBSIp5BDADHzffaZQZNY",
     authDomain: "your-auth-domain",
-    projectId: "fir-2e2f5",
-    storageBucket: "fir-2e2f5.appspot.com",
-    messagingSenderId: "223451987440",
-    appId: "1:223451987440:web:your-web-app-id",
+    projectId: "solop-f7607",
+    storageBucket: "solop-f7607.appspot.com",
+    messagingSenderId: "823239436996",
+    appId: "1:823239436996:android:eac6b8a5ab81a18cddf791",
   )); // Initialize Firebase
 
   GetIt.instance.registerSingleton<FirebaseService>(
@@ -39,7 +38,9 @@ class PocketBankingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Pocket Banking',
       theme: ThemeData(
         primarySwatch: Colors.teal,
