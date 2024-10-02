@@ -1,3 +1,4 @@
+import 'package:dart_mpesa/dart_mpesa.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
 import 'package:pocket_banking/services/firebase_service.dart';
@@ -16,7 +17,10 @@ import 'pages/account_page.dart'; // Import for AccountPage
 import 'package:get_it/get_it.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure binding is initialized
+  // Ensure binding is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
   await Firebase.initializeApp(
       options: const FirebaseOptions(
     apiKey: "AIzaSyC2iTTtLEhDSWEMBSIp5BDADHzffaZQZNY",
@@ -25,12 +29,26 @@ void main() async {
     storageBucket: "solop-f7607.appspot.com",
     messagingSenderId: "823239436996",
     appId: "1:823239436996:android:eac6b8a5ab81a18cddf791",
-  )); // Initialize Firebase
-
+  ));
   GetIt.instance.registerSingleton<FirebaseService>(
     FirebaseService(),
   );
-  runApp(PocketBankingApp()); // Run the app
+
+
+  //initialize m-pesa service
+  var mpesa = Mpesa(
+    shortCode: "",
+    consumerKey: "9DBhk5TbmMOGzeqNffODHsNBGJmNmwFPLNbr9IajLZrFIGF2",
+    consumerSecret: "9rC0AQPqHjSk7CdbBrXHf4IV054Q96GyqJArPSp452nr8IFm6EZS3EyvZzGk1Adp",
+    initiatorName: "solo",
+    securityCredential: "",
+    passKey: "",
+    identifierType: IdentifierType.OrganizationShortCode, // Type of organization, options, OrganizationShortCode, TillNumber, OrganizationShortCode
+    applicationMode: ApplicationMode.test
+  );
+
+  // Run the app
+  runApp(PocketBankingApp()); 
 }
 
 class PocketBankingApp extends StatelessWidget {
@@ -38,7 +56,6 @@ class PocketBankingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pocket Banking',
