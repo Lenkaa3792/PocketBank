@@ -73,7 +73,7 @@ class PocketBankingApp extends StatelessWidget {
         '/withdraw': (context) => WithdrawPage(),
         '/banktransfer': (context) => BankTransferPage(),
         '/deposit': (context) => DepositPage(),
-        '/savings': (context) => SavingsPage(), // Route for SavingsPage
+        '/savings': (context) => SavingsPage(), 
         '/loans': (context) => LoanPage(), // Route for LoanPage
         '/account': (context) => AccountPage(), // Route for AccountPage
       },

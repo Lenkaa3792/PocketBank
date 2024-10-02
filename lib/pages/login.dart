@@ -8,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late double deviceHeight, deviceWidth;
   // Controllers for email and password fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -18,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text('Login to PocketWallet', style: TextStyle(color: Colors.white)), // AppBar title
@@ -30,11 +33,17 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center, // Center the content vertically
             children: <Widget>[
+
+              SizedBox(
+                height: deviceHeight * 0.2,
+                width: deviceWidth * 0.2,
+                child: Image.asset('assets/images/logo.png'),
+              ),
               Text(
                 'Login',
                 style: Theme.of(context).textTheme.headlineMedium, // Uses the headline style from the app theme
               ),
-              SizedBox(height: 20), // Space between title and email field
+              SizedBox(height: deviceHeight * 0.03), // Space between title and email field
 
               // Email field
               TextFormField(
@@ -55,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 10), // Space between email and password fields
+              SizedBox(height: deviceHeight * 0.03), // Space between email and password fields
 
               // Password field
               TextFormField(
@@ -73,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 20), // Space before the login button
+              SizedBox(height: deviceHeight * 0.03), // Space before the login button
 
               // Login button
               ElevatedButton(
@@ -109,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: Text('Login'), // Button text
               ),
-              SizedBox(height: 10), // Space before the register link
+              SizedBox(height: deviceHeight * 0.03), // Space before the register link
 
               // Register link
               TextButton(
