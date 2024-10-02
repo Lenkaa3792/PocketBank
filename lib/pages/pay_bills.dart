@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_banking/services/m_pesa_service.dart';
 
 // Defining the PayBillsPage class, which is a StatefulWidget
 class PayBillsPage extends StatefulWidget {
@@ -9,6 +10,8 @@ class PayBillsPage extends StatefulWidget {
 }
 
 class _PayBillsPageState extends State<PayBillsPage> {
+  final MpesaService _mpesaService = MpesaService();
+
   // Controllers to handle input for the bill number, account number, and amount
   final TextEditingController billNumberController = TextEditingController();
   final TextEditingController accountNumberController = TextEditingController();
@@ -30,7 +33,8 @@ class _PayBillsPageState extends State<PayBillsPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0), // Padding around the content
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Center the column vertically
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Center the column vertically
           children: [
             // Dropdown button for selecting the type of bill
             DropdownButton<String>(
@@ -66,7 +70,8 @@ class _PayBillsPageState extends State<PayBillsPage> {
                   value: value, // The value for the dropdown item
                   child: Row(
                     children: [
-                      const Icon(Icons.receipt, size: 24), // Placeholder icon for each bill type
+                      const Icon(Icons.receipt,
+                          size: 24), // Placeholder icon for each bill type
                       const SizedBox(width: 8), // Space between icon and text
                       Text(value), // Display the bill type text
                     ],
@@ -74,47 +79,56 @@ class _PayBillsPageState extends State<PayBillsPage> {
                 );
               }).toList(), // Convert the list of bill types to dropdown items
             ),
-            const SizedBox(height: 16.0), // Space between the dropdown and input fields
+            const SizedBox(
+                height: 16.0), // Space between the dropdown and input fields
 
             // Input field for entering the bill number
             TextField(
-              controller: billNumberController, // Connects the controller to the input field
+              controller:
+                  billNumberController, // Connects the controller to the input field
               decoration: const InputDecoration(
                 labelText: 'Bill Number', // Label shown in the input field
-                border: OutlineInputBorder(), // Outline border for the input field
+                border:
+                    OutlineInputBorder(), // Outline border for the input field
               ),
             ),
             const SizedBox(height: 16.0), // Space between input fields
 
             // Input field for entering the account number
             TextField(
-              controller: accountNumberController, // Connects the controller to the input field
+              controller:
+                  accountNumberController, // Connects the controller to the input field
               decoration: const InputDecoration(
                 labelText: 'Account Number', // Label shown in the input field
-                border: OutlineInputBorder(), // Outline border for the input field
+                border:
+                    OutlineInputBorder(), // Outline border for the input field
               ),
             ),
             const SizedBox(height: 16.0), // Space between input fields
 
             // Input field for entering the amount to pay
             TextField(
-              controller: amountController, // Connects the controller to the input field
-              keyboardType: TextInputType.number, // Show numeric keyboard for input
+              controller:
+                  amountController, // Connects the controller to the input field
+              keyboardType:
+                  TextInputType.number, // Show numeric keyboard for input
               decoration: const InputDecoration(
                 labelText: 'Amount', // Label shown in the input field
-                border: OutlineInputBorder(), // Outline border for the input field
+                border:
+                    OutlineInputBorder(), // Outline border for the input field
               ),
             ),
-            const SizedBox(height: 20.0), // Space between input fields and button
+            const SizedBox(
+                height: 20.0), // Space between input fields and button
 
             // Button to trigger the payment action
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 // Logic to handle payment would go here
                 final billNumber = billNumberController.text;
                 final accountNumber = accountNumberController.text;
-                final amount = amountController.text;
-
+                final amount = double.parse(amountController.text);
+                
                 // Show a message with the payment details (for demonstration)
                 showDialog(
                   context: context,
