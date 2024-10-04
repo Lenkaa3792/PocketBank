@@ -12,6 +12,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  late double deviceHeight, deviceWidth;
+
   int _selectedIndex = 0;
 
   final List<Widget> _pages = <Widget>[
@@ -29,14 +31,29 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('PocketWallet',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          title: const Text(
+            'PocketWallet',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
           backgroundColor: Colors.teal.shade700,
           elevation: 10,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 16.0), 
+              child: Image.asset(
+                'assets/images/logo.png', 
+                height: 32, 
+                width: 32, 
+              ),
+            ),
+          ],
         ),
         drawer: drawerWidget(),
         body: AnimatedSwitcher(
@@ -164,10 +181,17 @@ class _DashboardPageState extends State<DashboardPage> {
             iconColor: Colors.white,
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
-            onTap: () {},
+            onTap: () {
+
+              _logOut();
+            },
           ),
         ],
       ),
     );
+  }
+
+  void _logOut() {
+    Navigator.pushReplacementNamed(context, '/login');
   }
 }

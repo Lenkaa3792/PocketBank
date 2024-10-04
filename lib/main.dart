@@ -66,7 +66,7 @@ class PocketBankingApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => SplashPage(),
-        'login': (context) => LoginPage(),
+        '/login': (context) => LoginPage(),
         '/dashboard': (context) => DashboardPage(),
         '/register': (context) => RegisterPage(),
         '/paybills': (context) => PayBillsPage(),
