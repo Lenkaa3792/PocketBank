@@ -18,6 +18,7 @@ import 'pages/account_page.dart'; // Import for AccountPage
 import 'package:get_it/get_it.dart';
 
 void main() async {
+  
   // Ensure binding is initialized
   WidgetsFlutterBinding.ensureInitialized();
 
