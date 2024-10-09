@@ -41,6 +41,8 @@ dependencies:
   get_it: ^8.0.0
   cloud_firestore: ^4.17.5
   firebase_storage: ^11.6.5
+  http: ^0.13.5
+
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +67,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/images/logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

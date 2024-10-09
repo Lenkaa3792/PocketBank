@@ -8,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late double deviceHeight, deviceWidth;
   // Controllers for email and password fields
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -18,33 +19,53 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login to PocketWallet', style: TextStyle(color: Colors.white)), // AppBar title
+        title: Text('Login to PocketWallet',
+            style: TextStyle(color: Colors.white)), // AppBar title
         backgroundColor: Colors.teal, // AppBar background color
       ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0), // Padding around the content
         child: Form(
           key: _formKey, // Form key for validation
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Center the content vertically
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center the content vertically
             children: <Widget>[
+              SizedBox(
+                height: deviceHeight * 0.2,
+                width: deviceWidth * 0.2,
+                child: Image.asset('assets/images/logo.png'),
+              ),
               Text(
                 'Login',
-                style: Theme.of(context).textTheme.headlineMedium, // Uses the headline style from the app theme
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium, // Uses the headline style from the app theme
               ),
-              SizedBox(height: 20), // Space between title and email field
+              SizedBox(
+                  height: deviceHeight *
+                      0.03), // Space between title and email field
 
               // Email field
               TextFormField(
-                controller: emailController, // Connect the controller to the email input
+                controller:
+                    emailController, // Connect the controller to the email input
                 decoration: InputDecoration(
                   labelText: 'Email', // Placeholder text
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)), // Border style
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)), // Focused border
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.black)), // Border style
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.black)), // Focused border
                 ),
-                keyboardType: TextInputType.emailAddress, // Show email keyboard layout
+                keyboardType:
+                    TextInputType.emailAddress, // Show email keyboard layout
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email'; // Error if the field is empty
@@ -55,16 +76,23 @@ class _LoginPageState extends State<LoginPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 10), // Space between email and password fields
+              SizedBox(
+                  height: deviceHeight *
+                      0.03), // Space between email and password fields
 
               // Password field
               TextFormField(
-                controller: passwordController, // Connect the controller to the password input
+                controller:
+                    passwordController, // Connect the controller to the password input
                 obscureText: true, // Hides the input for passwords
                 decoration: InputDecoration(
                   labelText: 'Password', // Placeholder text
-                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)), // Border style
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black)), // Focused border
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.black)), // Border style
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.black)), // Focused border
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -73,7 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                   return null; // No error if the field is valid
                 },
               ),
-              SizedBox(height: 20), // Space before the login button
+              SizedBox(
+                  height: deviceHeight * 0.03), // Space before the login button
 
               // Login button
               ElevatedButton(
@@ -82,7 +111,8 @@ class _LoginPageState extends State<LoginPage> {
                   if (_formKey.currentState!.validate()) {
                     try {
                       // Sign in the user with Firebase
-                      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                      UserCredential userCredential =
+                          await _auth.signInWithEmailAndPassword(
                         email: emailController.text.trim(),
                         password: passwordController.text.trim(),
                       );
@@ -99,7 +129,8 @@ class _LoginPageState extends State<LoginPage> {
                         errorMessage = 'An error occurred. Please try again.';
                       }
                       // Show error message
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(errorMessage)));
                     }
                   }
                 },
@@ -109,12 +140,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: Text('Login'), // Button text
               ),
-              SizedBox(height: 10), // Space before the register link
+              SizedBox(
+                  height:
+                      deviceHeight * 0.03), // Space before the register link
 
               // Register link
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/register'); // Navigate to Register page
+                  Navigator.pushNamed(
+                      context, '/register'); // Navigate to Register page
                 }, // Register link text
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.teal, // Text color
@@ -127,4 +161,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
 }
