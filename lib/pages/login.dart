@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.teal, Colors.green],
+            colors: [Colors.green, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,7 +47,10 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: deviceHeight * 0.2,
                   width: deviceWidth * 0.2,
-                  child: Image.asset('assets/images/logo.png'),
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.white,
+                      child: Image.asset('assets/images/logo.png')),
                 ),
                 Text(
                   'Login',
@@ -145,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal, // Button background color
+                    backgroundColor: Colors.pinkAccent, // Button background color
                     foregroundColor: Colors.white, // Button text color
                   ),
                   child: Text('Login'), // Button text
@@ -163,7 +166,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.teal, // Text color
                   ),
-                  child: Text('Don\'t have an account? Register here', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Don\'t have an account? Register here',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),

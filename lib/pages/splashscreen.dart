@@ -38,18 +38,31 @@ class _SplashPageState extends State<SplashPage> {
         backgroundColor: Colors.teal,
       ),
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: deviceHeight * 0.4,
-              child: Image.asset('assets/images/logo.png'),
-            ),
-            const CircularProgressIndicator.adaptive(
-              backgroundColor: Colors.white,
-            ),
-          ],
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.green, Colors.teal],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: deviceHeight * 0.4,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 72,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
+              ),
+              const CircularProgressIndicator.adaptive(
+                backgroundColor: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );
