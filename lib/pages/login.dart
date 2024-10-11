@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        shadowColor: Colors.green,
         title: Text('Login to PocketWallet',
             style: TextStyle(color: Colors.white)), // AppBar title
         backgroundColor: Colors.teal, // AppBar background color
@@ -30,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green, Colors.teal],
+            colors: [Colors.teal, Colors.green],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),

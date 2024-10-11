@@ -45,21 +45,29 @@ class _DashboardPageState extends State<DashboardPage> {
           elevation: 10,
           actions: [
             Padding(
-              padding: const EdgeInsets.only(
-                  right: 16.0), 
+              padding: const EdgeInsets.only(right: 16.0),
               child: Image.asset(
-                'assets/images/logo.png', 
-                height: 32, 
-                width: 32, 
+                'assets/images/logo.png',
+                height: 32,
+                width: 32,
               ),
             ),
           ],
         ),
         drawer: drawerWidget(),
-        body: AnimatedSwitcher(
-          // Smooth transition between pages
-          duration: const Duration(milliseconds: 300),
-          child: _pages[_selectedIndex],
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.teal, Colors.green],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: AnimatedSwitcher(
+            // Smooth transition between pages
+            duration: const Duration(milliseconds: 300),
+            child: _pages[_selectedIndex],
+          ),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
@@ -182,7 +190,6 @@ class _DashboardPageState extends State<DashboardPage> {
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () {
-
               _logOut();
             },
           ),
