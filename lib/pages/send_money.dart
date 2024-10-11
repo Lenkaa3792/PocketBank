@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_banking/widgets/mpesa_access_token.dart';
 
 // Defining the SendMoneyPage class
 class SendMoneyPage extends StatefulWidget {
@@ -10,8 +11,10 @@ class SendMoneyPage extends StatefulWidget {
 
 class _SendMoneyPageState extends State<SendMoneyPage> {
   // Controllers to manage the input fields
-  final TextEditingController recipientController = TextEditingController(); // Controller for recipient's number input
-  final TextEditingController amountController = TextEditingController(); // Controller for amount input
+  final TextEditingController recipientController =
+      TextEditingController(); // Controller for recipient's number input
+  final TextEditingController amountController =
+      TextEditingController(); // Controller for amount input
 
   // Form key to manage validation
   final _formKey = GlobalKey<FormState>();
@@ -28,16 +31,21 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
         child: Form(
           key: _formKey, // Connect form key for validation
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Center the column vertically
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Center the column vertically
             children: [
               // Input field for recipient's number
               TextFormField(
-                controller: recipientController, // Connect the controller to the input field
+                controller:
+                    recipientController, // Connect the controller to the input field
                 decoration: const InputDecoration(
-                  labelText: 'Recipient\'s Number', // Label displayed in the input field
-                  border: OutlineInputBorder(), // Outline border style for the input field
+                  labelText:
+                      'Recipient\'s Number', // Label displayed in the input field
+                  border:
+                      OutlineInputBorder(), // Outline border style for the input field
                 ),
-                keyboardType: TextInputType.phone, // Show numeric keyboard for phone number input
+                keyboardType: TextInputType
+                    .phone, // Show numeric keyboard for phone number input
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the recipient\'s number'; // Error if the field is empty
@@ -52,45 +60,74 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
 
               // Input field for amount
               TextFormField(
-                controller: amountController, // Connect the controller to the input field
+                controller:
+                    amountController, // Connect the controller to the input field
                 decoration: const InputDecoration(
                   labelText: 'Amount', // Label displayed in the input field
-                  border: OutlineInputBorder(), // Outline border style for the input field
+                  border:
+                      OutlineInputBorder(), // Outline border style for the input field
                 ),
-                keyboardType: TextInputType.number, // Show numeric keyboard for amount input
+                keyboardType: TextInputType
+                    .number, // Show numeric keyboard for amount input
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an amount'; // Error if the field is empty
                   }
-                  if (double.tryParse(value) == null || double.parse(value) <= 0) {
+                  if (double.tryParse(value) == null ||
+                      double.parse(value) <= 0) {
                     return 'Please enter a valid amount greater than 0'; // Ensure valid number and non-negative
                   }
                   return null; // No error if the field is valid
                 },
               ),
-              const SizedBox(height: 20.0), // Add space between the fields and button
+              const SizedBox(
+                  height: 20.0), // Add space between the fields and button
 
               // Send Money button
               ElevatedButton(
-                onPressed: () {
-                  // Validate the form before performing the send action
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    String recipient = recipientController.text; // Get the recipient's number from input
+                    String recipient = recipientController.text;
                     String amount = amountController.text;
-                     // Get the amount from input
-                    
-                    // Add your send money logic here (e.g., API call)
-                    print('Sending $amount to $recipient'); // Debug output to console
 
-                    // Optionally show a success message or navigate to another page
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Sending $amount to $recipient'),
-                    ));
+                    // Format the recipient phone number
+                    String? formattedRecipient = formatPhoneNumber(recipient);
+
+                    if (formattedRecipient == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text('Please enter a valid phone number')),
+                      );
+                      return; // Exit if the number is invalid
+                    }
+
+                    // Get M-Pesa access token
+                    String? accessToken = await getMpesaAccessToken();
+
+                    if (accessToken != null) {
+                      // Initiate payment
+                      await initiateMpesaSTKPush(
+                        accessToken: accessToken,
+                        recipient: formattedRecipient,
+                        amount: amount,
+                      );
+
+                      // Show success message
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Sending $amount to $formattedRecipient'),
+                      ));
+                    } else {
+                      // Show error message
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Failed to get access token'),
+                      ));
+                    }
                   }
-                }, // Text displayed on the button
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal, // Background color of the button
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0), // Padding for the button
+                  backgroundColor: Colors.teal,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32.0, vertical: 16.0),
                 ),
                 child: Text('Send Money'),
               ),
