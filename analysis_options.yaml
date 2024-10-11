@@ -18,6 +18,7 @@ analyzer:
     unused_local_variable: ignore
     prefer_const_declarations: ignore
     prefer_final_fields: ignore
+    prefer_adjacent_string_concatenation: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
