@@ -46,10 +46,13 @@ class _DashboardPageState extends State<DashboardPage> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
-              child: Image.asset(
-                'assets/images/logo.png',
-                height: 32,
-                width: 32,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  height: 32,
+                  width: 32,
+                ),
               ),
             ),
           ],
@@ -58,7 +61,7 @@ class _DashboardPageState extends State<DashboardPage> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.teal, Colors.green],
+              colors: [Colors.green, Colors.teal],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -113,87 +116,96 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget drawerWidget() {
-    return Drawer(
-      backgroundColor: Colors.teal,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.analytics),
-            title: const Text('Analytics'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.chat),
-            title: const Text('Reach Out'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Handle navigation to settings screen
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
-            onTap: () {
-              _logOut();
-            },
-          ),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.teal, Colors.green],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Drawer(
+        backgroundColor: Colors.teal,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            ListTile(
+              textColor: Colors.white,
+              hoverColor: Colors.white,
+              selectedColor: Colors.white,
+              iconColor: Colors.white,
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.of(context).pop(); // Close the drawer
+              },
+            ),
+            const Divider(
+              height: 5.0,
+              thickness: 1,
+              color: Colors.white,
+            ),
+            ListTile(
+              textColor: Colors.white,
+              hoverColor: Colors.white,
+              selectedColor: Colors.white,
+              iconColor: Colors.white,
+              leading: const Icon(Icons.analytics),
+              title: const Text('Analytics'),
+              onTap: () {
+                Navigator.of(context).pop(); // Close the drawer
+              },
+            ),
+            const Divider(
+              height: 5.0,
+              thickness: 1,
+              color: Colors.white,
+            ),
+            ListTile(
+              textColor: Colors.white,
+              hoverColor: Colors.white,
+              selectedColor: Colors.white,
+              iconColor: Colors.white,
+              leading: const Icon(Icons.chat),
+              title: const Text('Reach Out'),
+              onTap: () {
+                Navigator.of(context).pop(); // Close the drawer
+              },
+            ),
+            const Divider(
+              height: 5.0,
+              thickness: 1,
+              color: Colors.white,
+            ),
+            ListTile(
+              textColor: Colors.white,
+              hoverColor: Colors.white,
+              selectedColor: Colors.white,
+              iconColor: Colors.white,
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Handle navigation to settings screen
+              },
+            ),
+            const Divider(
+              height: 5.0,
+              thickness: 1,
+              color: Colors.white,
+            ),
+            ListTile(
+              textColor: Colors.white,
+              hoverColor: Colors.white,
+              selectedColor: Colors.white,
+              iconColor: Colors.white,
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                _logOut();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

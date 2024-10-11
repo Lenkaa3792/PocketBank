@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.teal, Colors.green],
+            colors: [Colors.green, Colors.teal],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,7 +47,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: deviceHeight * 0.2,
                   width: deviceWidth * 0.2,
-                  child: Image.asset('assets/images/logo.png'),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 22,
+                      child: Image.asset('assets/images/logo.png')),
                 ),
                 Text(
                   'Register',
@@ -148,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal, // Button background color
+                    backgroundColor: Colors.pinkAccent, // Button background color
                     foregroundColor: Colors.white, // Button text color
                   ),
                   child: Text('Register'), // Button text
