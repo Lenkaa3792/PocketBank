@@ -107,7 +107,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.account_circle), label: 'Account'),
               ],
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.green,
             ),
           ),
         ),
