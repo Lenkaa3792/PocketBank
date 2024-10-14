@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_banking/classes/dashboard_grid.dart';
+import 'package:pocket_banking/widgets/main_drawer_widget.dart';
 import 'savings_page.dart';
 import 'loan_page.dart';
 import 'account_page.dart';
@@ -57,7 +58,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ],
         ),
-        drawer: drawerWidget(),
+        drawer: MainDrawerWidget(),
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -94,8 +95,8 @@ class _DashboardPageState extends State<DashboardPage> {
             child: BottomNavigationBar(
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
-              selectedItemColor: Colors.teal.shade800,
-              unselectedItemColor: Colors.grey,
+              selectedItemColor: Colors.pinkAccent,
+              unselectedItemColor: Colors.green,
               selectedFontSize: 14,
               unselectedFontSize: 12,
               iconSize: 28,
@@ -107,7 +108,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.account_circle), label: 'Account'),
               ],
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.white,
             ),
           ),
         ),
@@ -115,93 +116,5 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget drawerWidget() {
-    return Drawer(
-      backgroundColor: Colors.teal,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.analytics),
-            title: const Text('Analytics'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.chat),
-            title: const Text('Reach Out'),
-            onTap: () {
-              Navigator.of(context).pop(); // Close the drawer
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Handle navigation to settings screen
-            },
-          ),
-          const Divider(
-            height: 5.0,
-            thickness: 1,
-            color: Colors.white,
-          ),
-          ListTile(
-            textColor: Colors.white,
-            hoverColor: Colors.white,
-            selectedColor: Colors.white,
-            iconColor: Colors.white,
-            leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
-            onTap: () {
-              _logOut();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _logOut() {
-    Navigator.pushReplacementNamed(context, '/login');
-  }
+  
 }
