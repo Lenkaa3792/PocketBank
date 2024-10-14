@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
+import 'package:mpesa_flutter_plugin/initializer.dart';
+import 'package:pocket_banking/keys/keys.dart';
 import 'package:pocket_banking/pages/splashscreen.dart';
 import 'package:pocket_banking/services/firebase_service.dart';
 import 'pages/login.dart';
@@ -17,6 +19,10 @@ import 'pages/account_page.dart'; // Import for AccountPage
 import 'package:get_it/get_it.dart';
 
 void main() async {
+//buy goods
+  MpesaFlutterPlugin.setConsumerKey(kConsumerKey);
+  MpesaFlutterPlugin.setConsumerSecret(kConsumerSecret);
+
   
   // Ensure binding is initialized
   WidgetsFlutterBinding.ensureInitialized();
