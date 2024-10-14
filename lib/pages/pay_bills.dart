@@ -158,6 +158,9 @@ class _PayBillsPageState extends State<PayBillsPage> {
                     },
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pinkAccent,
+                    foregroundColor: Colors.white),
                 child: const Text('Send Payment'), // Button label
               ),
             ],
