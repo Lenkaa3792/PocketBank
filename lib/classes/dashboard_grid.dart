@@ -15,19 +15,28 @@ class DashboardGrid extends StatelessWidget {
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
           children: <Widget>[
-            _buildDashboardItem(context, Icons.send, 'Send Money', '/sendmoney'),
-            _buildDashboardItem(context, Icons.payment, 'Pay Bills', '/paybills'),
-            _buildDashboardItem(context, Icons.phone, 'Buy Airtime', '/buyairtime'),
-            _buildDashboardItem(context, Icons.attach_money, 'Withdraw', '/withdraw'),
-            _buildDashboardItem(context, Icons.sync_alt, 'Bank Transfer', '/banktransfer'),
-            _buildDashboardItem(context, Icons.account_balance_wallet, 'Deposit', '/deposit'),
+            _buildDashboardItem(
+                context, Icons.payment_sharp, 'Buy Goods', '/goods'),
+            _buildDashboardItem(
+                context, Icons.send, 'Send Money', '/sendmoney'),
+            _buildDashboardItem(
+                context, Icons.payment, 'Pay Bills', '/paybills'),
+            _buildDashboardItem(
+                context, Icons.phone, 'Buy Airtime', '/buyairtime'),
+            _buildDashboardItem(
+                context, Icons.attach_money, 'Withdraw', '/withdraw'),
+            _buildDashboardItem(
+                context, Icons.sync_alt, 'Bank Transfer', '/banktransfer'),
+            _buildDashboardItem(
+                context, Icons.account_balance_wallet, 'Deposit', '/deposit'),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDashboardItem(BuildContext context, IconData icon, String label, String route) {
+  Widget _buildDashboardItem(
+      BuildContext context, IconData icon, String label, String route) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, route);
@@ -35,7 +44,8 @@ class DashboardGrid extends StatelessWidget {
       child: Card(
         color: Colors.white,
         elevation: 5.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -54,7 +64,10 @@ class DashboardGrid extends StatelessWidget {
             const SizedBox(height: 12.0),
             Text(
               label,
-              style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.teal),
+              style: const TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.teal),
             ),
           ],
         ),
