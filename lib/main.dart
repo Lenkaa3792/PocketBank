@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
 import 'package:mpesa_flutter_plugin/initializer.dart';
 import 'package:pocket_banking/keys/keys.dart';
+import 'package:pocket_banking/pages/buy_goods.dart';
 import 'package:pocket_banking/pages/splashscreen.dart';
 import 'package:pocket_banking/services/firebase_service.dart';
 import 'pages/login.dart';
@@ -70,8 +71,9 @@ class PocketBankingApp extends StatelessWidget {
         '/banktransfer': (context) => BankTransferPage(),
         '/deposit': (context) => DepositPage(),
         '/savings': (context) => SavingsPage(), 
-        '/loans': (context) => LoanPage(), // Route for LoanPage
-        '/account': (context) => AccountPage(), // Route for AccountPage
+        '/loans': (context) => LoanPage(), 
+        '/account': (context) => AccountPage(),
+        '/goods' : (context) => BuyGoodsPage(),
       },
     );
   }
